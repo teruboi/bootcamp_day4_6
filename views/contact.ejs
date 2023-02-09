@@ -1,21 +1,11 @@
-<h2>this is contact page</h2>
-<table>
-    <thead>
-        <th>Nama</th>
-        <th>No Telp</th>
-    </thead>
-    <% if (arr.length >= 1) { %>
-     <tbody>
-         <% for( let i = 0; i < arr.length; i++ ) { %>
-          <tr>
-            <td><%= arr[i].nama %></td>
-            <td><%= arr[i].no_telp %></td>
-          </tr>
-         <% } %>
-     </tbody>
-    <% }else { %>
-     <tbody>
-        <td colspan="2">Data not found</td>
-     </tbody>
-    <% } %>         
-</table>
+<h2>Contact List</h2>
+
+<% if (arr.length >= 1) { %>
+ <% arr.forEach(e => { %>
+  <ul>
+    <li>Name: <%= e.name %></li>
+    <li>Email: <%= e.email %></li>
+  </ul>
+ <% }) %>
+<% } %>
+
