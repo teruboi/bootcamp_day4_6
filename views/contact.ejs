@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+</head>
+<body>
+    <h3>Links</h3>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+    </ul>
+    <h2>this is contact page</h2>
+    <table>
+        <thead>
+            <th>Nama</th>
+            <th>No Telp</th>
+        </thead>
+            <% if (arr.length !== 0) { %>
+             <tbody>
+                 <% for( let i = 0; i < arr.length; i++ ) { %>
+                    <tr>
+                        <td><%= arr[i].nama %></td>
+                        <td><%= arr[i].no_telp %></td>
+                    </tr>
+                 <% } %>
+             </tbody>
+            <% }else { %>
+             <tbody>
+                <td colspan="2">Data not found</td>
+             </tbody>
+            <% } %>
+             
+    </table>
+</body>
+</html>
