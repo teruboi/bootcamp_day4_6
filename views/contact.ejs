@@ -1,11 +1,30 @@
-<h2>Contact List</h2>
+<div class="container text-center float-center">
+    <h2>Contact List</h2>
 
-<% if (arr.length >= 1) { %>
- <% arr.forEach(e => { %>
-  <ul>
-    <li>Name: <%= e.name %></li>
-    <li>Email: <%= e.email %></li>
-  </ul>
- <% }) %>
-<% } %>
-
+    <% if (arr.length >= 1) { %>
+    <table class="table">
+        <thead class="thead-dark">
+            <th scope="col">No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Action</th>
+        </thead>
+        <tbody>
+            <% arr.forEach((e, i) => { %>
+                <tr>
+                    <td><%= i+1 %></td>
+                    <td><%= e.name %></td>
+                    <td><%= e.phone %></td>
+                    <td>
+                        <span class="row justify-content-center">
+                            <a style="margin-right: 10px" href="/contact/<%= e.name %>" class="col-2 btn btn-info">detail</a>
+                            <a style="margin-right: 10px" href="/contact/edit/<%= e.name %>" class="col-2 btn btn-warning">edit</a>
+                            <a href="/contact/delete/<%= e.name %>" class="col-2 btn btn-danger">delete</a>
+                        </span>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <% } %>
+</div>

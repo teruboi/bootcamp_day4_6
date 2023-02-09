@@ -44,6 +44,35 @@ app.get('/contact', (req, res) => {
     res.render('contact', {title: 'Contacts', arr: (JSON.parse(fs.readFileSync('./public/contacts.json', 'utf-8')))})
 })
 
+app.get('/contact/:name', (req, res) => {
+    let temp = JSON.parse(fs.readFileSync('./public/contacts.json', 'utf-8'))
+    console.log(temp);
+    let data = []
+    temp.forEach(e => {
+        if (e.name === req.params.name) {
+            data.push(e)
+        }
+    });
+
+    res.render('detail', {title: `${req.params.name}'s Contact Detail`, name: req.params.name, arr: data})
+})
+
+app.get('/contact/edit/:name', (req,res) => {
+    const name = req.params.name
+    let temp = JSON.parse(fs.readFileSync('./public/contacts.json', 'utf-8'))
+    console.log(temp);
+    let data = []
+    temp.forEach(e => {
+        if (e.name === name) {
+            data.push(e)
+        }
+    });
+
+    res.render('edit', {title: 'Edit contact detail', arr: data})
+})
+
+app.post('/contact/edit')
+
 app.get('/product/:id', (req, res) => {
     const id = req.params.id
     res.send(`This ${req.query.category} have a product id ${id}`)
