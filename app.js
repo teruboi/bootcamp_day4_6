@@ -11,14 +11,22 @@ app.set('view engine', 'ejs')
 app.use(expressLayout)
 app.set('layout', './layout/full-width')
 
+app.use((req, res, next) => {
+    console.log('Time:', Date.now())
+    next()
+})
+
+app.use(express.static('public'))
+
 app.get('/', (req, res) => {
 //   res.sendFile('./index.html', {root: __dirname})
     res.render('index', {title: 'Homepage'})
 })
 
-app.get('/about', (req, res) => {
+app.get('/about', (req, res, next) => {
     // res.sendFile('./about.html', {root: __dirname})
     res.render('about', {title: 'About'})
+    next()
 })
 
 app.get('/contact', (req, res) => {
