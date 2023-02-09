@@ -1,4 +1,5 @@
 const express = require('express')
+const expressLayout = require('express-ejs-layouts')
 const app = express()
 const fs = require('fs')
 const port = 3000
@@ -6,26 +7,30 @@ const port = 3000
 //Using EJS as the view engine
 app.set('view engine', 'ejs')
 
+//EJS Layouts using Express-EJS-Layouts
+app.use(expressLayout)
+app.set('layout', './layout/full-width')
+
 app.get('/', (req, res) => {
 //   res.sendFile('./index.html', {root: __dirname})
-    res.render('index')
+    res.render('index', {title: 'Homepage'})
 })
 
 app.get('/about', (req, res) => {
     // res.sendFile('./about.html', {root: __dirname})
-    res.render('about')
+    res.render('about', {title: 'About'})
 })
 
 app.get('/contact', (req, res) => {
     // res.sendFile('./contact.html', {root: __dirname})
-    // const contacts = [
-    //     {nama: 'Reynaldi', no_telp: '081255556666'},
-    //     {nama: 'Tomi', no_telp: '081233334444'},
-    //     {nama: 'Joni', no_telp: '081277778888'},
-    //     {nama: 'Budi', no_telp: '081299990000'},
-    // ]
-    const contacts = []
-    res.render('contact', {arr: contacts})
+    const contacts = [
+        {nama: 'Reynaldi', no_telp: '081255556666'},
+        {nama: 'Tomi', no_telp: '081233334444'},
+        {nama: 'Joni', no_telp: '081277778888'},
+        {nama: 'Budi', no_telp: '081299990000'},
+    ]
+    // const contacts = []
+    res.render('contact', {title: 'Contacts', arr: contacts})
 })
 
 app.get('/product/:id', (req, res) => {
