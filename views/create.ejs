@@ -1,0 +1,32 @@
+<% if (msg == '01') { %>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        Contact's name already exists
+    </div>
+<% } else if (msg == '02') { %>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        Invalid phone number (Area: ID)
+    </div>
+<% } %>
+
+<div class="container justify-content-center">
+    <div class="container d-flex flex-column row justify-content-center">
+        <h2 class="text-center">New Contact</h2>
+        <div>
+            <form action="/contact/create" method="post">
+                <div class="form-group">
+                  <label for="newName">Name</label>
+                  <input type="text" class="form-control" name="newName" placeholder="Enter your full name" value="<%= name %>" required>
+                </div>
+                <div class="form-group">
+                  <label for="newEmail">Email Address</label>
+                  <input type="email" class="form-control" name="newEmail" placeholder="Enter your email address" value="<%= email %>" required>
+                </div>
+                <div class="form-group">
+                  <label for="newPhone">Phone Number</label>
+                  <input type="text" class="form-control" name="newPhone" placeholder="Enter your phone number" value="<%= phone %>" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

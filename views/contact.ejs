@@ -1,3 +1,19 @@
+<% if (msg == 'create') { %>
+    <div class="alert alert-success alert-dismissible" role="alert">
+        Contact successfully created!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<% } else if (msg == 'edit') { %>
+    <div class="alert alert-success alert-dismissible" role="alert">
+        Contact successfully updated!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<% } %>
+
 <div class="container text-center float-center">
     <h2>Contact List</h2>
 
@@ -10,16 +26,40 @@
             <th scope="col">Action</th>
         </thead>
         <tbody>
+            <tr>
+                <td colspan="4">
+                    <a href="/contact/create" class="inline-d-flex btn btn-primary justify-content-center text-center">+ Create new contact</a>
+                </td>
+            </tr>
             <% arr.forEach((e, i) => { %>
                 <tr>
                     <td><%= i+1 %></td>
                     <td><%= e.name %></td>
                     <td><%= e.phone %></td>
                     <td>
-                        <span class="row justify-content-center">
-                            <a style="margin-right: 10px" href="/contact/<%= e.name %>" class="col-2 btn btn-info">detail</a>
+                        <span class="flex-row justify-content-center">
+                            <a style="margin-right: 10px" href="/contact/detail/<%= e.name %>" class="col-2 btn btn-info">detail</a>
                             <a style="margin-right: 10px" href="/contact/edit/<%= e.name %>" class="col-2 btn btn-warning">edit</a>
-                            <a href="/contact/delete/<%= e.name %>" class="col-2 btn btn-danger">delete</a>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletePrompt">delete</button>
+                            <div class="modal fade" id="deletePrompt" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Delete Contact</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          Are you sure you want to delete?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+                                            <a href="/contact/delete/<%= e.name %>" class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </span>
                     </td>
                 </tr>
@@ -27,4 +67,5 @@
         </tbody>
     </table>
     <% } %>
+    
 </div>
