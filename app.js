@@ -128,7 +128,7 @@ app.get('/contact/delete/:name', (req,res) => {
     let data = JSON.parse(fs.readFileSync('./public/contacts.json', 'utf-8'))
     const newData = data.filter(e => e.name.toLowerCase() !== req.params.name.toLowerCase());
     fs.writeFileSync('./public/contacts.json', JSON.stringify(newData), 'utf-8')
-    res.redirect('/contact')
+    res.redirect('/contact?success=delete')
 })
 
 app.get('/product/:id', (req, res) => {
